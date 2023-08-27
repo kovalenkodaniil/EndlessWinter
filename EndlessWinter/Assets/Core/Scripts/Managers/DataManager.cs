@@ -1,17 +1,23 @@
 ﻿using System.Collections.Generic;
 using Core.Scripts.EventsLogic;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Scripts.Managers
 {
-    public class DataManager: MonoBehaviour
+    public class DataManager
     {
-        [SerializeField] private JSONManager _jsonManager;
-        [field: SerializeField] private List<EventData> EventsData { get; set; }
+        public List<EventData> EventsData { get; set; }
+        public List<TaskData> TaskData { get; set; }
 
-        private void Start()
+        public DataManager(JSONManager jsonManager)
         {
-            _jsonManager.LoadEvent(this);
+            TaskData = new List<TaskData>();
+            EventsData = new List<EventData>();
+            
+            jsonManager.LoadEvent(this);
+            jsonManager.LoadTask(this);
+            Debug.Log("Htu");
         }
 
         public void AddEvent(SchemeEvents events)
@@ -23,6 +29,18 @@ namespace Core.Scripts.Managers
                 tempEvent.Description = x.Description;
                 
                 EventsData.Add(tempEvent);
+            });
+        }
+        
+        public void AddTask(SchemeEvents tasks)
+        {
+            tasks.Events.ForEach(x =>
+            {
+                var tempEvent = new TaskData();
+                tempEvent.Name = x.Name;
+                tempEvent.Description = x.Description;
+                
+                TaskData.Add(tempEvent);
             });
         }
     }

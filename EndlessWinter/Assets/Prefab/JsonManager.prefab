@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jsonEvent: {fileID: 4900000, guid: 9c8e32923d6e4c46bb753f1ee72c3a92, type: 3}
+  _jsonTask: {fileID: 4900000, guid: c40ac9bcf5ccbf347ac3df7dbe0e5d74, type: 3}
