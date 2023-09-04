@@ -7,8 +7,8 @@ namespace Core.Scripts.Managers
 {
     public class DataManager
     {
-        public List<EventData> EventsData { get; set; }
-        public List<TaskData> TaskData { get; set; }
+        public List<EventData> EventsData { get; private set; }
+        public List<TaskData> TaskData { get; private set; }
 
         public DataManager(JSONManager jsonManager)
         {
@@ -17,7 +17,6 @@ namespace Core.Scripts.Managers
             
             jsonManager.LoadEvent(this);
             jsonManager.LoadTask(this);
-            Debug.Log("Htu");
         }
 
         public void AddEvent(SchemeEvents events)
